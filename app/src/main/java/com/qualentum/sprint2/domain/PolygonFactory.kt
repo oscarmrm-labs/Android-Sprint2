@@ -10,17 +10,17 @@ class PolygonFactory(
 
     fun calculateArea(): Double {
         return when (type){
-            PolygonTypes.Triangle.polygonType -> Triangle(side, apotem).calculateArea()
-            PolygonTypes.Pentagon.polygonType -> Pentagon(side, apotem).calculateArea()
-            else -> { Octagon(side, apotem).calculateArea() }
+            PolygonTypes.Triangle.polygonType -> Triangle(apotem, side).calculateArea()
+            PolygonTypes.Pentagon.polygonType -> Pentagon(apotem, side).calculateArea()
+            else -> { Octagon(apotem, side).calculateArea() }
         }
     }
 
     fun calculatePerimeter(): Double {
         return when (type){
-            PolygonTypes.Triangle.polygonType -> Triangle(side, apotem).calculatePerimeter()
-            PolygonTypes.Pentagon.polygonType -> Pentagon(side, apotem).calculatePerimeter()
-            else -> { Octagon(side, apotem).calculatePerimeter() }
+            PolygonTypes.Triangle.polygonType -> Triangle(apotem, side).calculatePerimeter()
+            PolygonTypes.Pentagon.polygonType -> Pentagon(apotem, side).calculatePerimeter()
+            else -> { Octagon(apotem, side).calculatePerimeter() }
         }
     }
 }
