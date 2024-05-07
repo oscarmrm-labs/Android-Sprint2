@@ -64,15 +64,13 @@ class PolygonDetail : AppCompatActivity() {
                 etSide?.text.toString().equals("0") or etApotem?.text.toString().equals("0")){
             Toast.makeText(this, "Los campos no pueden ser vacios o '0'", Toast.LENGTH_SHORT).show()
         } else {
-            var polygon = etSide?.let {
-                PolygonFactory(
+            var polygon = PolygonFactory(
                     type = polygonType,
-                    side = it.toDouble(etSide),
-                    apotem =  it.toDouble(etApotem)
+                    side = etSide!!.toDouble(),
+                    apotem =  etApotem!!.toDouble()
                     //side = etSide?.text.toString().toDouble(),
                     //apotem = etApotem?.text.toString().toDouble()
                 )
-            }
             tvArea?.text = "Area: " + polygon?.calculateArea().toString()
             tvPerimeter?.text = "Perimetro: " + polygon?.calculatePerimeter().toString()
             //Toast.makeText(this, "figura creada: " + polygon.calculateArea(), Toast.LENGTH_SHORT).show()
