@@ -16,31 +16,55 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:adjustViewBounds="true"
-            android:scaleType="fitCenter"
-            android:text="triangulo" />
+            android:scaleType="fitCenter" />
+
+        <TextView
+            android:id="@+id/tvTriangle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/btn_triangle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:text="Triángulo" />
 
         <ImageButton
             android:id="@+id/btn_pentagon"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:src="@drawable/pentagono_sinfondo"
-            app:layout_constraintTop_toBottomOf="@id/btn_triangle"
+            app:layout_constraintTop_toBottomOf="@id/tvTriangle"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:adjustViewBounds="true"
-            android:scaleType="fitCenter"
-            android:text="pentagon" />
+            android:scaleType="fitCenter" />
+
+        <TextView
+            android:id="@+id/tvPentagon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/btn_pentagon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:text="Pentágono" />
 
         <ImageButton
             android:id="@+id/btn_octagon"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:src="@drawable/octogono_sinfondo"
-            app:layout_constraintTop_toBottomOf="@id/btn_pentagon"
+            app:layout_constraintTop_toBottomOf="@id/tvPentagon"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:adjustViewBounds="true"
-            android:scaleType="fitCenter"
-            android:text="octagon" />
+            android:scaleType="fitCenter" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/btn_octagon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:text="Octógono" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
