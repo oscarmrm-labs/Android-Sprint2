@@ -5,14 +5,12 @@ import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.qualentum.sprint2.R
 import com.qualentum.sprint2.data.PolygonTypes
 import com.qualentum.sprint2.domain.PolygonFactory
-import java.lang.StringBuilder
 
 class PolygonDetail : AppCompatActivity() {
     lateinit var polygonType: String
@@ -76,28 +74,61 @@ class PolygonDetail : AppCompatActivity() {
 
     fun actionCalculateButton(){
         if (tieSide?.text.isNullOrBlank() or tieApotem?.text.isNullOrEmpty() or
-                tieSide?.text.toString().equals("0") or tieApotem?.text.toString().equals("0")){
-            // TODO: marcar los editTexts en rojo
-            Toast.makeText(this, "Los campos no pueden ser vacios o '0'", Toast.LENGTH_SHORT).show()
+        (tieSide?.text.toString() == "0") or (tieApotem?.text.toString() == "0")){
+            showError()
+            clearFormulas()
         } else {
-            var polygon = PolygonFactory(
-                    type = polygonType,
-                    side = tieSide!!.toDouble(),
-                    apotem =  tieApotem!!.toDouble()
-                )
-            tvArea?.text = buildString {
-                append("Area: ")
-                append(polygon.showAreaFormula())
-                append(" = ")
-                append(polygon.calculateArea().toString())
-            }
-            tvPerimeter?.text = buildString {
-                append("Perimetro: ")
-                append(polygon.showPerimeterFormula())
-                append(" = ")
-                append(polygon.calculatePerimeter().toString())
-            }
-
+            clearErrors()
+            buildAreaAndPerimeter(buildPolygon())
         }
+        clearErrors()
+    }
+
+    private fun buildPolygon() = PolygonFactory(
+        type = polygonType,
+        side = tieSide!!.toDouble(),
+        apotem = tieApotem!!.toDouble()
+    )
+
+    fun buildAreaAndPerimeter(polygon: PolygonFactory){
+        tvArea?.text = buildString {
+            append("Area: ")
+            append(polygon.showAreaFormula())
+            append(" = ")
+            append(polygon.calculateArea().toString())
+        }
+        tvPerimeter?.text = buildString {
+            append("Perimetro: ")
+            append(polygon.showPerimeterFormula())
+            append(" = ")
+            append(polygon.calculatePerimeter().toString())
+        }
+    }
+
+    private fun showError() {
+        if (tieSide?.text.isNullOrBlank() or (tieSide?.text.toString() == "0")) {
+            if (polygonType == PolygonTypes.Triangle.polygonType) {
+                tilSide?.error = "La base no puede ser vacía o '0'"
+            } else {
+                tilSide?.error = "El lado no puede ser vacío o '0'"
+            }
+        }
+        if (tieApotem?.text.isNullOrBlank() or (tieApotem?.text.toString() == "0")) {
+            if (polygonType == PolygonTypes.Triangle.polygonType){
+                tilApotem?.error = "La altura no puede ser vacía o '0'"
+            } else {
+                tilApotem?.error = "El apotema no puede ser vacío o '0'"
+            }
+        }
+    }
+
+    fun clearErrors(){
+        if (!tieSide?.text.isNullOrBlank() and (tieSide?.text.toString() != "0")) tilSide?.error = null
+        if (!tieApotem?.text.isNullOrBlank() and (tieApotem?.text.toString() != "0")) tilApotem?.error = null
+    }
+
+    fun clearFormulas(){
+        tvArea?.text = ""
+        tvPerimeter?.text = ""
     }
 }
