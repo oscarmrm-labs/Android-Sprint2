@@ -1,7 +1,6 @@
 package com.qualentum.sprint2.ui
 
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -34,9 +33,9 @@ class PolygonDetail : AppCompatActivity() {
         showImage()
 
         val btnCalculate: Button = findViewById(R.id.btnCalculate)
-        btnCalculate.setOnClickListener(View.OnClickListener {
+        btnCalculate.setOnClickListener{
             actionCalculateButton()
-        })
+        }
     }
 
     fun getBundle(){
