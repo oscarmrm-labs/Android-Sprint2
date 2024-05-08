@@ -23,4 +23,20 @@ class PolygonFactory(
             else -> { Octagon(apotem, side).calculatePerimeter() }
         }
     }
+
+    fun showPerimeterFormula(): String{
+        return when (type) {
+            PolygonTypes.Triangle.polygonType -> Triangle(apotem, side).buildPerimeterFormula()
+            PolygonTypes.Pentagon.polygonType -> Pentagon(apotem, side).buildPerimeterFormula()
+            else -> { Octagon(apotem, side).buildPerimeterFormula() }
+        }
+    }
+
+    fun showAreaFormula(): String{
+        return when (type) {
+            PolygonTypes.Triangle.polygonType -> Triangle(apotem, side).buildAreaFormula()
+            PolygonTypes.Pentagon.polygonType -> Pentagon(apotem, side).buildAreaFormula()
+            else -> { Octagon(apotem, side).buildAreaFormula() }
+        }
+    }
 }

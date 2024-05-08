@@ -3,7 +3,6 @@ package com.qualentum.sprint2.ui
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
-import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -13,14 +12,19 @@ import com.google.android.material.textfield.TextInputLayout
 import com.qualentum.sprint2.R
 import com.qualentum.sprint2.data.PolygonTypes
 import com.qualentum.sprint2.domain.PolygonFactory
+import java.lang.StringBuilder
 
 class PolygonDetail : AppCompatActivity() {
     lateinit var polygonType: String
+
+    //layout
     lateinit var image: ImageView
+
     var tieApotem: TextInputEditText? = null
     var tieSide: TextInputEditText? = null
     var tilApotem: TextInputLayout? = null
     var tilSide: TextInputLayout? = null
+
     var tvArea: TextView? = null
     var tvPerimeter: TextView? = null
 
@@ -29,7 +33,7 @@ class PolygonDetail : AppCompatActivity() {
         setContentView(R.layout.activity_polygon_detail)
         getBundle()
         joinIdsLayout()
-        initImage()
+        showImage()
 
         val btnCalculate: Button = findViewById(R.id.btnCalculate)
         btnCalculate.setOnClickListener(View.OnClickListener {
@@ -43,20 +47,22 @@ class PolygonDetail : AppCompatActivity() {
     }
 
     private fun joinIdsLayout(){
+        image = findViewById(R.id.imageView)
+
         tieApotem = findViewById(R.id.tieApotem)
         tieSide = findViewById(R.id.tieSide)
         tilApotem = findViewById(R.id.tilApotem)
         tilSide = findViewById(R.id.tilSide)
+
         tvArea = findViewById(R.id.tvArea)
         tvPerimeter = findViewById(R.id.tvPerimeter)
     }
 
-    private fun initImage(){
-        image = findViewById(R.id.imageView)
-        image.setImageResource(showImage())
+    private fun showImage(){
+        image.setImageResource(getImage())
     }
 
-    private fun showImage(): Int {
+    private fun getImage(): Int {
         return when (polygonType) {
             PolygonTypes.Triangle.polygonType -> {
                 tilSide?.hint = "Base"
@@ -79,8 +85,19 @@ class PolygonDetail : AppCompatActivity() {
                     side = tieSide!!.toDouble(),
                     apotem =  tieApotem!!.toDouble()
                 )
-            tvArea?.text = "Area: " + polygon?.calculateArea().toString()
-            tvPerimeter?.text = "Perimetro: " + polygon?.calculatePerimeter().toString()
+            tvArea?.text = buildString {
+                append("Area: ")
+                append(polygon.showAreaFormula())
+                append(" = ")
+                append(polygon.calculateArea().toString())
+            }
+            tvPerimeter?.text = buildString {
+                append("Perimetro: ")
+                append(polygon.showPerimeterFormula())
+                append(" = ")
+                append(polygon.calculatePerimeter().toString())
+            }
+
         }
     }
 }

@@ -1,7 +1,9 @@
 package com.qualentum.sprint2.domain
 
 import com.qualentum.sprint2.data.regularPolygonArea
+import com.qualentum.sprint2.data.regularPolygonAreaFormula
 import com.qualentum.sprint2.data.regularPolygonPerimeter
+import com.qualentum.sprint2.data.regularPolygonPerimeterFormula
 
 class Octagon(
     val apotem: Double,
@@ -17,5 +19,15 @@ class Octagon(
     override fun calculateArea(): Double {
         val perimeter: Double = calculatePerimeter()
         return regularPolygonArea(apotem, perimeter)
+    }
+
+
+    override fun buildPerimeterFormula(): String {
+        return regularPolygonPerimeterFormula(side, nSides)
+    }
+
+    override fun buildAreaFormula(): String {
+        val perimeter: Double = calculatePerimeter()
+        return regularPolygonAreaFormula(apotem, perimeter)
     }
 }
