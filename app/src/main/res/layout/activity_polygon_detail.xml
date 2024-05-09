@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.FigureDetail">
+    android:layout_height="wrap_content"
+    tools:context=".ui.PolygonDetail">
 
     <ImageView
         android:id="@+id/imageView"
@@ -17,54 +17,68 @@
         app:layout_constraintEnd_toEndOf="parent"
         tools:src="@tools:sample/avatars" />
 
-    <EditText
-        android:id="@+id/etApotem"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilApotem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:minEms="10"
+        android:layout_margin="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
-        android:hint="Apotema"
-        android:ems="10"
-        android:inputType="numberDecimal"
-        android:text="" />
+        android:hint="Apotema">
 
-    <EditText
-        android:id="@+id/etSide"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tieApotem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilSide"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:minEms="10"
+        android:layout_margin="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etApotem"
-        android:hint="Lado"
-        android:ems="10"
-        android:inputType="numberDecimal"
-        android:text="" />
+        app:layout_constraintTop_toBottomOf="@+id/tilApotem"
+        android:hint="Lado">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tieSide"
+            android:inputType="numberDecimal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/btnCalculate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etSide"
-        android:text="Calcular area" />
+        app:layout_constraintTop_toBottomOf="@+id/tilSide"
+        android:text="Calcular" />
 
     <TextView
         android:id="@+id/tvPerimeter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnCalculate"
-        android:text="" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnCalculate" />
 
     <TextView
         android:id="@+id/tvArea"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvPerimeter"
-        android:text="" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvPerimeter" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
